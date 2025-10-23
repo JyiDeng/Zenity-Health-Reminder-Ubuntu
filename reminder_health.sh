@@ -87,19 +87,19 @@ keyboard_listener() {
     done
 }
 
-# 模块1：每15分钟提醒确认当前工作（带日志记录）
+# 模块1：每25分钟提醒确认当前工作（带日志记录）
 work_check_reminder() {
     # 创建日志文件路径（在脚本当前目录）
     script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     log_file="$script_dir/work_status_log.txt"
     
     while true; do
-        sleep 900  # 15分钟 = 900秒
+        sleep 1500  # 25分钟 = 1500秒
         
         # 显示选择对话框
         choice=$(zenity --list \
             --title="工作状态确认" \
-            --text="⏰ 15分钟提醒\n\n请选择你当前的工作状态：" \
+            --text="⏰ 25分钟提醒\n\n请选择你当前的工作状态：" \
             --column="状态" \
             "逐步推进，继续执行" \
             "脱离正轨，马上调整" \
@@ -189,7 +189,7 @@ bathroom_reminder() {
 main() {
     echo "启动健康提醒系统..."
     echo "包含四个功能模块："
-    echo "1. 工作确认提醒 (每15分钟)"
+    echo "1. 工作确认提醒 (每25分钟)"
     echo "2. 活动喝水提醒 (每37分钟)"
     echo "3. 上厕所提醒 (每53分钟)"
     echo "4. 心情记录功能 (按 'a' 键添加)"
